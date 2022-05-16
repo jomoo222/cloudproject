@@ -65,24 +65,12 @@ cms = function (req, res,itemName,uid) {
         }
     });
 
- 
-    db.query(`select cnt from content where content_name =?`, [itemName], function (err, result) {
-        if (err) {
-            insert_error(req, res, err, "cms2");
-        }
-        var cnt = result[0].cnt;
-        
-
-
-        getpath(req,res,cnt,itemName);
- 
-    });
-
+    getpath(req,res,itemName);
 }
 
 
 
-    getpath = function (req, res,cnt,itemName) {
+    getpath = function (req, res,itemName) {
 
     var itemName = req.body.itemName;
 
@@ -104,8 +92,9 @@ cms = function (req, res,itemName,uid) {
              var file_path = path.join(__dirname,'../PDF',category,itemName);
       
              console.log(file_path);
-            
-            res.sendFile(file_path+'.pdf'); 
+             
+             res.send(fs.readFileSync(file_path + '.pdf'));
+             
 
 
          });
@@ -114,10 +103,6 @@ cms = function (req, res,itemName,uid) {
 
 
         });
-        //무연님이랑 상의해보기
-        res.json({ count : cnt});
-
-        
 
 
 
