@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
-app.post('/', (req, res) => {
+app.post('/get', (req, res) => {
 
   conn.user(req, res);
 
