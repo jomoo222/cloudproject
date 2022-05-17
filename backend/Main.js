@@ -5,6 +5,15 @@ var path = require('path');
 var app = express();
 var db_db = require('./db');
 var conn = require('./conn');
+var cors = require('cors');
+
+
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials:true,
+  
+}
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use('/home', express.static("./public"));
@@ -25,7 +34,7 @@ app.get('/home', (req, res) => {
 });
 
 // getItem get-> post변경
-app.post('/getItem', (req, res) => {
+app.get('/getItem', (req, res) => {
   console.log("home 까지 왔다.");
   conn.getItem(req, res);
 });
