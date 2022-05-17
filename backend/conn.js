@@ -92,8 +92,9 @@ cms = function (req, res,itemName,uid) {
              var file_path = path.join(__dirname,'../PDF',category,itemName);
       
              console.log(file_path);
-             
+             console.log("파일전송 시작: ");
              res.send(fs.readFileSync(file_path + '.pdf'));
+             console.log("파일전송 끝 ");
              
 
 

@@ -26,7 +26,7 @@ app.get('/home', (req, res) => {
 
 
 app.get('/getItem', (req, res) => {
-  console.log("여기까지 왔다.");
+  console.log("home 까지 왔다.");
   conn.getItem(req, res);
 });
 
