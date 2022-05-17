@@ -18,9 +18,9 @@ app.use(cors(corsOptions));
 
 
 app.use(express.json());
-// app.use('/home', express.static("./public"));
+app.use('/home', express.static("./public"));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/', express.static("./"));
+app.use('/img', express.static("./public/img"));
 
 
 app.get('/home', (req, res) => {
