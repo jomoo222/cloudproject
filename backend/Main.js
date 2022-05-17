@@ -20,17 +20,13 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/home', express.static("./public"));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/', express.static("./public"));
 
 app.get('/getItem', (req, res) => {
   console.log("home 까지 왔다.");
-
-
   conn.getItem(req, res);
 });
+
 app.post('/get', (req, res) => {
-
-
   conn.user(req, res);
 });
 
