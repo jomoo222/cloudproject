@@ -9,35 +9,35 @@ var cors = require('cors');
 
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
-  credentials:true,
+  origin: '*',
+  Credential: true,
   
-}
+};
+
 app.use(cors(corsOptions));
+
 
 app.use(express.json());
 app.use('/home', express.static("./public"));
-
 app.use(bodyParser.urlencoded({ extended: false }));
-
-
 app.use('/', express.static("./public"));
 
+app.get('/getItem', (req, res) => {
+  console.log("home 까지 왔다.");
+
+
+  conn.getItem(req, res);
+});
 app.post('/get', (req, res) => {
 
-  conn.user(req, res);
 
+  conn.user(req, res);
 });
 
 app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-// getItem get-> post변경
-app.get('/getItem', (req, res) => {
-  console.log("home 까지 왔다.");
-  conn.getItem(req, res);
-});
 
 app.listen(3000, function (req, res) {
   console.log('Server started to listen at 3000');
