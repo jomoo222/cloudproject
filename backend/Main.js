@@ -24,8 +24,8 @@ app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-
-app.get('/getItem', (req, res) => {
+// getItem get-> post변경
+app.post('/getItem', (req, res) => {
   console.log("home 까지 왔다.");
   conn.getItem(req, res);
 });
