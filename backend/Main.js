@@ -18,8 +18,14 @@ app.use(cors(corsOptions));
 
 
 app.use(express.json());
-app.use('/home', express.static("./public"));
+// app.use('/home', express.static("./public"));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/', express.static("./"));
+
+
+app.get('/home', (req, res) => {
+  res.sendFile(path.join(__dirname + '/public/index.html'));
+});
 
 app.get('/getItem', (req, res) => {
   console.log("home 까지 왔다.");
@@ -30,9 +36,6 @@ app.post('/get', (req, res) => {
   conn.user(req, res);
 });
 
-app.get('/home', (req, res) => {
-  res.sendFile(path.join(__dirname + '/public/index.html'));
-});
 
 
 app.listen(3000, function (req, res) {
