@@ -64,8 +64,9 @@ cms = function (req, res,itemName,uid) {
             insert_error(req, res, err, "cms1");
         }
     });
-
-    getpath(req,res,itemName);
+   
+    getpath(req, res, itemName);
+    
 }
 
 
@@ -81,7 +82,7 @@ cms = function (req, res,itemName,uid) {
              insert_error(req, res, err1, "getpath part1");
              throw err1;
          }
-
+        
          db.query(`select category_name from category  where category_idx=? ; `, [result1[0].category_idx], function (err2, result2) {
              if (err2) {
                  insert_error(req, res, err2, "getpath part2");
@@ -93,9 +94,10 @@ cms = function (req, res,itemName,uid) {
       
              console.log(file_path);
              console.log("파일전송 시작: ");
-            // res.send(fs.readFileSync(file_path + '.pdf'));
-             var filestream = fs.createReadStream(file_path+'.pdf');
-             filestream.pipe(res);
+            
+             res.send(fs.readFileSync(file_path + '.pdf'));
+            //  var filestream = fs.createReadStream(file_path+'.pdf');
+            //  filestream.pipe(res);
              
              console.log("파일전송 끝 ");
              
