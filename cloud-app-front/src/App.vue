@@ -1,16 +1,16 @@
 <template>
-  <!-- <item-list></item-list> -->
-  <Css-Test></Css-Test>
+  <item-list></item-list>
+  <!-- <Css-Test></Css-Test> -->
 </template>
 
 <script>
-// import ItemList from './components/ItemList.vue'
-import CssTest from './components/CssTest.vue'
+import ItemList from './components/ItemList.vue'
+// import CssTest from './components/CssTest.vue'
 export default {
   name: 'App',
   components: {
-    // ItemList,
-    CssTest
+    ItemList,
+    // CssTest
   }
 }
 </script>

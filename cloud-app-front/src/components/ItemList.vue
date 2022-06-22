@@ -40,7 +40,7 @@ export default {
     methods:{
       //서버에서 데이터 수신 getData()
       getData() {
-        //서버 url 입력 get(url)https://4d525421-d1de-468b-afa9-add953f0ad89.mock.pstmn.io/list"
+        //서버 url 입력 get(url)
         axios.get("http://localhost:3000/getItem/")
         // axios.get("http://3.38.64.13:3000/getItem/")
         .then((res) => {
@@ -56,46 +56,34 @@ export default {
         console.log(process.env)
    
       },
-      // async getData() {
-      //   try {
-      //     const response =await axios.get("http://localhost:3000/getItem/")
-      //     this.itemList=response.data
-      //   } catch(error){
-      //     console.log(error);
-      //   } finally {
-      //     this.listSort()
-      //   }
-      // },
 
       //버튼 크릭시 유저데이터 송신 (데이터 폼)
       postData(name,count,index) {
-        console.log(name,count,index)
-        axios.post('http://localhost:3000/get',{itemName:name, user:this.userOne})
-        .then((res) =>{
-          console.log(res)
-          console.log(2)
-        })
-        .catch((error)=> {
-          console.log(error)
-        })
-        .finally(()=> {
+        let postConfig = {
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          responseType: 'blob',
+        } 
 
+        axios.post('http://localhost:3000/get', { itemName: name, user: this.userOne }, postConfig )
+          .then((res) => {
+
+            var fileURL = window.URL.createObjectURL(new Blob([res.data], { type: "application/pdf" }));
+            console.log(fileURL);
+            var fileLink = document.createElement('a');
+            fileLink.href = fileURL;
+            fileLink.setAttribute('download', 'file.pdf');
+            document.body.appendChild(fileLink);
+            fileLink.click();
         })
 
-        this.itemList[index].count+=1
-          //리스트 count에 따른 정렬
+        this.itemList[index].count += 1
+        
+        //리스트 count에 따른 정렬
         this.listSort()
       },
-      // async postData(name,index){
-      //   try{
-      //     const response = await axios.post('http://localhost:3000/get',{itemName:name, user:this.userOne})
-      //     console.log(response)
-      //   } catch(error) {
-      //     console.log(error)
-      //   }
-      //   this.itemList[index].count+=1
-      //   this.listSort()
-      // },
+
 
       //리스트 정렬 내림차순
       listSort() {
