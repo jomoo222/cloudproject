@@ -41,7 +41,7 @@ export default {
       //서버에서 데이터 수신 getData()
       getData() {
         //서버 url 입력 get(url)
-        axios.get("http://localhost:3000/getItem/")
+        axios.get("http://43.200.25.214:3000/getItem/")
         // axios.get("http://3.38.64.13:3000/getItem/")
         .then((res) => {
           console.log(res.data);
@@ -66,7 +66,7 @@ export default {
           responseType: 'blob',
         } 
 
-        axios.post('http://localhost:3000/get', { itemName: name, user: this.userOne }, postConfig )
+        axios.post('http://43.200.25.214:3000/get', { itemName: name, user: this.userOne }, postConfig )
           .then((res) => {
 
             var fileURL = window.URL.createObjectURL(new Blob([res.data], { type: "application/pdf" }));
